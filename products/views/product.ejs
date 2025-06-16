@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    Product page
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/product/stylesheets/style.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark shadowme">
+    <div class="container-fluid">
+      <div>
+        <img src="http://images.restapi.co.za/pvt/Noroff-64.png" alt="" class="navbar-brand" id="spritespin">
+      </div>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-3"> 
+          <li class="nav-item">
+            <a class="nav-link custom-nav-link" href="http://localhost:8000/product">Product Service</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link custom-nav-link" href="http://localhost:8000/customer">Customer Service</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link custom-nav-link" href="http://localhost:8000/management">Management Service</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="row py-3">
+      <div class="col">
+        <h3><i class="bi bi-table"></i>Welcome to Product service</h3>
+      </div>
+    </div>
+    <form id="searchForm" class="mt-4 mb-4" onsubmit="redirectToProduct(event)">
+      <div class="input-group">
+        <input type="text" class="form-control" id="searchId" placeholder="Enter Product ID" required>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </form>
+
+    <% if (error) { %>
+      <div class="alert alert-danger text-center"><%= error %></div>
+    <% } else if (product) { %>
+      <h1 class="mt-4">Product Details</h1>
+      <div class="panel mt-4 shadowme">
+        <div class="panel-heading">
+          <span class="panel-caption">Product</span>
+        </div>
+        <div class="panel-body">
+          <table class="table table-bordered text-white">
+            <tr>
+              <th class="n-background-light">Product ID</th>
+              <td><%= product.ProductID %></td>
+            </tr>
+            <tr>
+              <th class="n-background-light">Product Name</th>
+              <td><%= product.ProductName %></td>
+            </tr>
+            <tr>
+              <th class="n-background-light">Product Model</th>
+              <td><%= product.ProductModel ? product.ProductModel : "N/A" %></td>
+            </tr>
+            <tr>
+              <th class="n-background-light">Product Category</th>
+              <td><%= product.ProductCategory ? product.ProductCategory : "N/A" %></td>
+            </tr>
+            <tr>
+              <th class="n-background-light">Color</th>
+              <td><%= product.Color ? product.Color : "N/A" %></td>
+            </tr>
+            <tr>
+              <th class="n-background-light">Size</th>
+              <td><%= product.Size ? product.Size : "N/A" %></td>
+            </tr>
+            <tr>
+              <th class="n-background-light">Weight</th>
+              <td><%= product.Weight ? product.Weight + " kg" : "N/A" %></td>
+            </tr>
+            <tr>
+              <th class="n-background-light">List Price</th>
+              <td><%= product.ListPrice.toFixed(2) %></td>
+            </tr>
+            <tr>
+              <th class="n-background-light">Sell Start Date</th>
+              <td><%= product.SellStartDate %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    <% } %>
+  </div>
+  <script src="/product/js/searchfunc.js"></script>
+</body>
+</html>
